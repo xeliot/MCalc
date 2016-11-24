@@ -30,28 +30,53 @@ def determinant(matrix):
         result += (((-1)**i)*matrix[0][i]*determinant(trim(matrix, 0, i)))
     return result
 
-def transpose(matrix):
-    pass
+def multiply(matrix1, matrix2):
+    if not len(matrix1[0])==len(matrix2):
+        raise Exception("Error: Invalid Matrix Dimensions.")
+    else:
+        result = []
+        for i in range(0, len(matrix1)):
+            result.append([])
+            for j in range(0, len(matrix2[0])):
+                result[i].append(0)
+        for i in range(0, len(matrix1)):
+            for j in range(0, len(matrix2[0])):
+                for k in range(0, len(matrix2)):
+                    result[i][j] += matrix1[i][k] * matrix2[k][j]
+        return result
+                    
 
 def inverse(matrix):
     d = determinant(matrix)
     result = []
-    sign = 1
     for rownum in range(0, len(matrix)):
         result.append([])
+        sign = (-1)**rownum
         for colnum in range(0, len(matrix[rownum])):
             result[rownum].append((sign * determinant(trim(matrix, rownum, colnum)))/(d*1.0))
+            
             if sign == 1:
                 sign = -1
             else:
                 sign = 1
+            
     result = map(list, zip(*result))
     return result
 
-'''    
-matrix = [[3, 8],
-          [4, 6]]
-'''
+
+m = [[12,7,3],
+     [4 ,5,6],
+     [7 ,8,9]]
+     
+n = [[5,8,1,2],
+     [6,7,3,0],
+     [4,5,9,1]]
+
+matrix = [[1, 2, 3, 4],
+          [4, 2, 3, 1],
+          [10, 12, 13, 5],
+          [0.5, 6, 28, 5]]
+
 
 matrix3 = [[0, 1, 2],
           [3, -1, 0],
