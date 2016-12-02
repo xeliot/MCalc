@@ -9,6 +9,6 @@ Current Features:
 - Inverse
 - More coming soon
 
-The frontend version of this calculator will be built in the future using RShiny.
+The frontend version of this calculator will be built in the future using R Shiny.
 
 (c) 2016, Xeliot, All Rights Reserved.
